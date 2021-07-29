@@ -1,14 +1,16 @@
-import { useContext } from "react";
+import React from "react";
 import "./ProductCard.css";
 import formatCurrency from "format-currency";
 import Rating from "./Rating";
-import CartContext from "../context/cart/CartContext";
 import { useDispatch } from "react-redux";
+import { addToCart } from "./Redux/cartSlice";
 
 const ProductCard = ({ product }) => {
-  const dispatch = useDispatch();
-  console.log(product);
   let opts = { format: "%s%v", symbol: "€" };
+  const dispatch = useDispatch();
+  const addToCarts = () => {
+    dispatch(addToCart(product));
+  };
   return (
     <div className="productCard__wrapper">
       <div>
@@ -23,7 +25,7 @@ const ProductCard = ({ product }) => {
             text={`${product.numReviews} reviews`}
           />
         </div>
-        <button className="ProductCard__button" onClick>
+        <button className="ProductCard__button" onClick={addToCarts}>
           Add to basket
         </button>
       </div>

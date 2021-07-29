@@ -1,18 +1,21 @@
-import { useContext } from "react";
 import "./CartItem.css";
-import CartContext from "../context/cart/CartContext";
 import formatCurrency from "format-currency";
+import { useDispatch } from "react-redux";
+import { removeItem } from "./Redux/cartSlice";
 
 const CartItem = ({ item }) => {
-  const { removeItem } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const removeItems = (id) => {
+    dispatch(removeItem(item._id));
+  };
   let opts = { format: "%s%v", symbol: "€" };
   return (
-    <li className='CartItem__item'>
-      <img src={item.image} alt='' />
+    <li className="CartItem__item">
+      <img src={item.image} alt="" />
       <div>
         {item.name} {formatCurrency(`${item.price}`, opts)}
       </div>
-      <button className='CartItem__button' onClick={() => removeItem(item._id)}>
+      <button className="CartItem__button" onClick={removeItems}>
         Remove
       </button>
     </li>

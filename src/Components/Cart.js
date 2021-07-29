@@ -1,14 +1,11 @@
-import { useContext } from "react";
 import "./Cart.css";
-import CartContext from "../context/cart/CartContext";
 import formatCurrency from "format-currency";
 import CartItem from "./CartItem";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+
 import { showHideCart } from "./Redux/cartSlice";
 
 const Cart = () => {
-  // const { showCart, cartItems, showHideCart } = useContext(CartContext);
   let opts = { format: "%s%v", symbol: "€" };
   const showCart = useSelector((state) => state.carts.showCart);
   const cartItems = useSelector((state) => state.carts.cartItems);

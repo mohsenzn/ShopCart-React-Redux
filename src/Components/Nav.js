@@ -1,11 +1,8 @@
 import "./Nav.css";
-import { useContext } from "react";
-import CartContext from "../context/cart/CartContext";
 import { useDispatch } from "react-redux";
 import { showHideCart } from "./Redux/cartSlice";
 
 const Nav = () => {
-  // const { cartItems, showHideCart } = useContext(CartContext);
   const dispatch = useDispatch();
 
   return (
