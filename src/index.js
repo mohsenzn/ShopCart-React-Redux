@@ -6,12 +6,13 @@ import reportWebVitals from "./reportWebVitals";
 // import CartState from "./context/cart/CartState";
 
 import { Provider } from "react-redux";
+import store from "./Components/Redux/store";
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider>
+  <>
+    <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
+  </>,
   document.getElementById("root")
 );
 

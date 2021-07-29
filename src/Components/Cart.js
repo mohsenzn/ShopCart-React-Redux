@@ -3,24 +3,30 @@ import "./Cart.css";
 import CartContext from "../context/cart/CartContext";
 import formatCurrency from "format-currency";
 import CartItem from "./CartItem";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { showHideCart } from "./Redux/cartSlice";
 
 const Cart = () => {
-  const { showCart, cartItems, showHideCart } = useContext(CartContext);
+  // const { showCart, cartItems, showHideCart } = useContext(CartContext);
   let opts = { format: "%s%v", symbol: "€" };
+  const showCart = useSelector((state) => state.carts.showCart);
+  const cartItems = useSelector((state) => state.carts.cartItems);
+  const dispatch = useDispatch();
 
   return (
     <>
       {showCart && (
-        <div className='cart__wrapper'>
+        <div className="cart__wrapper">
           <div style={{ textAlign: "right" }}>
             <i
               style={{ cursor: "pointer" }}
-              className='fa fa-times-circle'
-              aria-hidden='true'
-              onClick={showHideCart}
+              className="fa fa-times-circle"
+              aria-hidden="true"
+              onClick={() => dispatch(showHideCart())}
             ></i>
           </div>
-          <div className='cart__innerWrapper'>
+          <div className="cart__innerWrapper">
             {cartItems.length === 0 ? (
               <h4>Cart is Empty</h4>
             ) : (
@@ -31,7 +37,7 @@ const Cart = () => {
               </ul>
             )}
           </div>
-          <div className='Cart__cartTotal'>
+          <div className="Cart__cartTotal">
             <div>Cart Total</div>
             <div></div>
             <div style={{ marginLeft: 5 }}>

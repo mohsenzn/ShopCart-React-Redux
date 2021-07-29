@@ -1,31 +1,29 @@
 import "./Nav.css";
 import { useContext } from "react";
 import CartContext from "../context/cart/CartContext";
+import { useDispatch } from "react-redux";
+import { showHideCart } from "./Redux/cartSlice";
 
 const Nav = () => {
-  const { cartItems, showHideCart } = useContext(CartContext);
+  // const { cartItems, showHideCart } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   return (
     <nav>
-      <div className='nav__left'>Store</div>
-      <div className='nav__middle'>
-        <div className='input__wrapper'>
-          <input type='text' />
-          <i className='fas fa-search' />
+      <div className="nav__left">Store</div>
+      <div className="nav__middle">
+        <div className="input__wrapper">
+          <input type="text" />
+          <i className="fas fa-search" />
         </div>
       </div>
-      <div className='nav__right'>
-        <div className='cart__icon'>
+      <div className="nav__right">
+        <div className="cart__icon">
           <i
-            className='fa fa-shopping-cart'
-            aria-hidden='true'
-            onClick={showHideCart}
+            className="fa fa-shopping-cart"
+            aria-hidden="true"
+            onClick={() => dispatch(showHideCart())}
           />
-          {cartItems.length > 0 && (
-            <div className='item__count'>
-              <span>{cartItems.length}</span>
-            </div>
-          )}
         </div>
       </div>
     </nav>
